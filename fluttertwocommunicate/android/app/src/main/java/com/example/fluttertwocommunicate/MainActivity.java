@@ -4,6 +4,9 @@ import android.os.Bundle;
 import io.flutter.plugin.common.MethodChannel;
 import io.flutter.plugin.common.MethodChannel.MethodCallHandler;
 import io.flutter.plugins.GeneratedPluginRegistrant;
+import io.flutter.app.FlutterActivity;
+import io.flutter.plugin.common.MethodCall;
+import io.flutter.plugin.common.MethodChannel.Result;
 
 public class MainActivity extends FlutterActivity {
 
@@ -24,7 +27,7 @@ public class MainActivity extends FlutterActivity {
 
                     String nativeFinalStr = "返回给原生安卓的值";
 
-                    result.success(nativeFinalStr);
+//                    result.success(nativeFinalStr);
 
                     result.error("001", "安卓进入异常", "进入flutter的trycatch方法的catch方法");
 
