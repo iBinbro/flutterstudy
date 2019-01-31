@@ -26,13 +26,13 @@
             //获取一个字符串
             NSString *nativeFinalStr = [weakself getString];
             
-//            if (nativeFinalStr!=nil) {
-//                //把获取到的字符串传值给flutter
-//                result(nativeFinalStr);
-//            }else{
-//                //异常(比如改方法是调用原生的getString获取一个字符串，但是返回的是nil(空值)，这显然是不对的，就可以向flutter抛出异常 进入catch处理)
-//                result([FlutterError errorWithCode:@"001" message:[NSString stringWithFormat:@"进入异常处理"] details:@"进入flutter的trycatch方法的catch方法"]);
-//            }
+            if (nativeFinalStr!=nil) {
+                //把获取到的字符串传值给flutter
+                result(nativeFinalStr);
+            }else{
+                //异常(比如改方法是调用原生的getString获取一个字符串，但是返回的是nil(空值)，这显然是不对的，就可以向flutter抛出异常 进入catch处理)
+                result([FlutterError errorWithCode:@"001" message:[NSString stringWithFormat:@"进入异常处理"] details:@"进入flutter的trycatch方法的catch方法"]);
+            }
         }else{
             //调用的方法原生没有对应的处理  抛出未实现的异常
             result(FlutterMethodNotImplemented);
