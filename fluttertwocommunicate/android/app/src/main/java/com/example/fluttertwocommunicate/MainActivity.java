@@ -10,7 +10,7 @@ import io.flutter.plugin.common.MethodChannel.Result;
 
 public class MainActivity extends FlutterActivity {
 
-    private static final String CHANNEL = "https://www.jianshu.com/u/ee3db73e5459";
+    private static final String CHANNEL = "https://www.jianshu.com/p/ce7ed8bbf35c";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
