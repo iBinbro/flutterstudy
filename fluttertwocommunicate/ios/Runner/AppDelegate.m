@@ -1,5 +1,6 @@
 #include "AppDelegate.h"
 #include "GeneratedPluginRegistrant.h"
+#import "NVPlatformViewFactory.h"
 
 //遵循代理方法
 @interface AppDelegate()<FlutterStreamHandler>
@@ -31,9 +32,17 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
     
     
-  [GeneratedPluginRegistrant registerWithRegistry:self];
-  // Override point for customization after application launch.
-  return [super application:application didFinishLaunchingWithOptions:launchOptions];
+    [GeneratedPluginRegistrant registerWithRegistry:self];
+    
+    /**********flutter显示原生组件flutter-Start**********/
+    NVPlatformViewFactory *nvPlatformViewFactory = [[NVPlatformViewFactory alloc] init];
+    //native:插件名，和其他插件区分开 唯一性
+    //nvview:flutter中UiKitView组件需要的viewType属性 这样flutter就能找到viewFactory工厂方法返回对应的原生组件
+    [[self registrarForPlugin:@"native"] registerViewFactory:nvPlatformViewFactory withId:@"nvview"];
+    /**********flutter显示原生组件flutter-End**********/
+    
+    // Override point for customization after application launch.
+    return [super application:application didFinishLaunchingWithOptions:launchOptions];
 }
 
 /**********原生主动传值给flutter-Start**********/

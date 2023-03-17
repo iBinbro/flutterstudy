@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'dart:async';
 import 'package:flutter/services.dart';
@@ -79,15 +81,66 @@ class _TwoCommunicateState extends State<TwoCommunicate> {
                   setState(() {});
                 },
               ),
-
               //显示原生传过来的值
               MaterialButton(
                 color: Colors.green,
                 child: Text(_nativeToFlutterString),
+                onPressed: () {},
+              ),
+              MaterialButton(
+                color: Colors.green,
+                child: Text("显示原生界面"),
                 onPressed: () {
+                  showDialog(
+                      context: context,
+                      builder: (context) {
+                        return Column(
+                          children: [
+                            Platform.isAndroid == true
+                                ? Container(
+                                    width: 100,
+                                    height: 100,
+                                    color: Colors.red,
+                                    child: AndroidView(viewType: "nvview"),
+                                  )
+                                : Container(
+                                    width: 200,
+                                    height: 200,
+                                    color: Colors.red,
+                                    child: UiKitView(
+                                      viewType: "nvview",
+                                      // 原生种的args
+                                      creationParams: 1,
+                                      // 编码类型
+                                      // StandardMessageCodec
+                                      // JSONMessageCodec
+                                      // StringCodec
+                                      // BinaryCodec
+                                      creationParamsCodec: JSONMessageCodec(),
+                                    ),
+                                  ),
+                            Platform.isAndroid == true
+                                ? Container(
+                                    width: 100,
+                                    height: 100,
+                                    color: Colors.red,
+                                    child: AndroidView(viewType: "nvview"),
+                                  )
+                                : Container(
+                                    width: 300,
+                                    height: 300,
+                                    color: Colors.red,
+                                    child: UiKitView(
+                                      viewType: "nvview",
+                                      creationParams: 2,
+                                      creationParamsCodec: JSONMessageCodec(),
+                                    ),
+                                  ),
+                          ],
+                        );
+                      });
                 },
-              )
-
+              ),
             ],
           ),
         ),
