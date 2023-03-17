@@ -8,20 +8,17 @@ class TwoCommunicate extends StatefulWidget {
 }
 
 class _TwoCommunicateState extends State<TwoCommunicate> {
-
   //****************flutter主动调用原生方法****************//
   String _nativeCallBackValue = '等待原生传值';
 
   //交互的通道名称，flutter和native是通过这个标识符进行相互间的通信
-  static const communicateChannel =
-      MethodChannel('https://www.jianshu.com/p/ce7ed8bbf35c');
+  static const communicateChannel = MethodChannel('https://www.jianshu.com/p/ce7ed8bbf35c');
 
   //异步执行调用原生方法，保持页面不卡住，因为调用原生的方法可能没实现会抛出异常，所以trycatch包住
   Future<void> _communicateFunction(flutterPara) async {
     try {
       //原生方法名为callNativeMethond,flutterPara为flutter调用原生方法传入的参数，await等待方法执行
-      final result = await communicateChannel.invokeMethod(
-          'callNativeMethond', flutterPara);
+      final result = await communicateChannel.invokeMethod('callNativeMethond', flutterPara);
       //如果原生方法执行回调传值给flutter，那下面的代码才会被执行
       _nativeCallBackValue = result;
 
@@ -43,7 +40,7 @@ class _TwoCommunicateState extends State<TwoCommunicate> {
   EventChannel eventChannel = EventChannel('https://www.jianshu.com/p/7dbbd3b4ce32');
 
   //监听到数据后用于处理数据的方法，这个函数是用于处理接收到原生传进来的数据的，可自行定义
-  void _receiveFromeNative(Object para){
+  void _receiveFromeNative(Object para) {
     print(para);
     setState(() {
       _nativeToFlutterString = para.toString();
@@ -51,7 +48,7 @@ class _TwoCommunicateState extends State<TwoCommunicate> {
   }
 
   //原生返回错误信息
-  void _fromNativeError(Object error){
+  void _fromNativeError(Object error) {
     print(error);
   }
 
