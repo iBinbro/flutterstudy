@@ -6,11 +6,12 @@ import java.util.Timer;
 import java.util.TimerTask;
 import java.util.logging.StreamHandler;
 
+import io.flutter.embedding.engine.FlutterEngine;
 import io.flutter.plugin.common.EventChannel;
 import io.flutter.plugin.common.MethodChannel;
 import io.flutter.plugin.common.MethodChannel.MethodCallHandler;
 import io.flutter.plugins.GeneratedPluginRegistrant;
-import io.flutter.app.FlutterActivity;
+import io.flutter.embedding.android.FlutterActivity;
 import io.flutter.plugin.common.MethodCall;
 import io.flutter.plugin.common.MethodChannel.Result;
 
@@ -30,9 +31,9 @@ public class MainActivity extends FlutterActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        GeneratedPluginRegistrant.registerWith(this);
+        GeneratedPluginRegistrant.registerWith(new FlutterEngine(this));
 
-        new MethodChannel(getFlutterView(), CHANNEL).setMethodCallHandler(new MethodCallHandler() {
+        new MethodChannel(getFlutterEngine().getDartExecutor().getBinaryMessenger(), CHANNEL).setMethodCallHandler(new MethodCallHandler() {
             @Override
             public void onMethodCall(MethodCall call, Result result) {
                 if (call.method.equals("callNativeMethond")) {
@@ -53,7 +54,7 @@ public class MainActivity extends FlutterActivity {
         });
 
         //注册监听通道
-        new EventChannel(getFlutterView(), NativeToFlutterChannel).setStreamHandler(
+        new EventChannel(getFlutterEngine().getDartExecutor().getBinaryMessenger(), NativeToFlutterChannel).setStreamHandler(
                 new EventChannel.StreamHandler() {
                     Timer timer = new Timer();
 
