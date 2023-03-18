@@ -52,11 +52,12 @@ public class MainActivity extends FlutterActivity {
                     Object para = call.arguments;
                     System.out.println("flutter传给安卓的值：" + para);
 
-                    String nativeFinalStr = "返回给原生安卓的值";
+                    String nativeFinalStr = "原生再返回给flutter的值";
 
                     result.success(nativeFinalStr);
 
-                    result.error("001", "安卓进入异常", "进入flutter的trycatch方法的catch方法");
+                    //处理错误可以在这抛出异常
+                    //result.error("001", "安卓进入异常", "进入flutter的trycatch方法的catch方法");
 
                 } else {
                     result.notImplemented();

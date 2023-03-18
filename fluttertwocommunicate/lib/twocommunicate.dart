@@ -11,7 +11,7 @@ class TwoCommunicate extends StatefulWidget {
 
 class _TwoCommunicateState extends State<TwoCommunicate> {
   //****************flutter主动调用原生方法****************//
-  String _nativeCallBackValue = '等待原生传值';
+  String _nativeCallBackValue = '点击flutter传值给原生(原生收到后打印再返回一个新值至flutter)';
 
   //交互的通道名称，flutter和native是通过这个标识符进行相互间的通信
   static const communicateChannel = MethodChannel('https://www.jianshu.com/p/ce7ed8bbf35c');
