@@ -1,6 +1,8 @@
 package com.example.fluttertwocommunicate;
 
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
 
 import java.util.Timer;
 import java.util.TimerTask;
@@ -25,7 +27,16 @@ public class MainActivity extends FlutterActivity {
     //安卓原生方法传参，每1s就会被执行一次实现自增
     private void repeatCount(EventChannel.EventSink eventSink){
         _nativeCount ++;
-        eventSink.success(_nativeCount);
+
+        //需要在主线程中执行传值至flutter
+        Handler handler = new Handler(Looper.getMainLooper());
+        handler.post(new Runnable() {
+            @Override
+            public void run() {
+                eventSink.success(_nativeCount);
+            }
+        });
+
     }
 
     @Override
