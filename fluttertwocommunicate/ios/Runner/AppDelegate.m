@@ -16,15 +16,13 @@
 - (BOOL)application:(UIApplication *)application
 didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
-    __weak __typeof(self) weakself = self;
-    
     FlutterViewController *controller = (FlutterViewController *)self.window.rootViewController;
     
     /**********原生主动传值给flutter-Start**********/
     _nativeCount = 0;
     
     NSLog(@"原生实现 原生传值给flutter的通道标识");
-    FlutterEventChannel *eventChannel = [FlutterEventChannel eventChannelWithName:@"https://www.jianshu.com/p/7dbbd3b4ce32" binaryMessenger:controller];
+    FlutterEventChannel *eventChannel = [FlutterEventChannel eventChannelWithName:@"https://www.jianshu.com/p/7dbbd3b4ce32" binaryMessenger:controller.binaryMessenger];
     //设置代理
     [eventChannel setStreamHandler:self];
     

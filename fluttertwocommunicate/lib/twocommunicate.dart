@@ -101,7 +101,11 @@ class _TwoCommunicateState extends State<TwoCommunicate> {
                                     width: 100,
                                     height: 100,
                                     color: Colors.red,
-                                    child: AndroidView(viewType: "nvview"),
+                                    child: AndroidView(
+                                      viewType: "nvview",
+                                      creationParams: 1,
+                                      creationParamsCodec: StandardMessageCodec(),
+                                    ),
                                   )
                                 : Container(
                                     width: 200,
@@ -124,7 +128,11 @@ class _TwoCommunicateState extends State<TwoCommunicate> {
                                     width: 100,
                                     height: 100,
                                     color: Colors.red,
-                                    child: AndroidView(viewType: "nvview"),
+                                    child: AndroidView(
+                                      viewType: "nvview",
+                                      creationParams: 2,
+                                      creationParamsCodec: StandardMessageCodec(),
+                                    ),
                                   )
                                 : Container(
                                     width: 300,
