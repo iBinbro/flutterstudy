@@ -45,7 +45,7 @@ class NVPlatformView implements PlatformView {
     }
 }
 
-/// 工厂类 返回 PlatformView 类实例
+/// 新建一个工厂类 返回 PlatformView 类实例
 class NVPlatformViewFactory extends PlatformViewFactory {
 
     /// 与flutter中 creationParams creationParamsCodec 对应 不实现此方法args则为null
